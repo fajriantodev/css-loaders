@@ -1,0 +1,62 @@
+*,
+::before,
+::after {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+:root {
+	--size: 24;
+	--dot-size: calc(var(--size) * 1px);
+	--dot-gap: calc(var(--dot-size) / 4);
+	--dot-start-position: 0;
+	--dot-end-position: calc((var(--dot-size) + var(--dot-gap)) * 3);
+	--filter-blur: calc(var(--dot-gap) / 2);
+	--filter-contrast: calc(var(--size) / 4);
+}
+
+.container {
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: black;
+}
+
+.dots-wrapper {
+	position: relative;
+	display: flex;
+	align-items: center;
+	padding: var(--dot-gap);
+	gap: var(--dot-gap);
+	background: black;
+	filter: blur(var(--filter-blur)) contrast(var(--filter-contrast));
+}
+
+.dot:first-child {
+	position: absolute;
+	animation: 2s ease-in-out infinite move;
+}
+
+.dot {
+	width: var(--dot-size);
+	height: var(--dot-size);
+	border-radius: var(--dot-size);
+	background-color: white;
+}
+
+@keyframes move {
+	0% {
+		transform: translateX(var(--dot-start-position));
+	}
+
+	50% {
+		transform: translateX(var(--dot-end-position));
+	}
+
+	100% {
+		transform: translateX(var(--dot-start-position));
+	}
+}
